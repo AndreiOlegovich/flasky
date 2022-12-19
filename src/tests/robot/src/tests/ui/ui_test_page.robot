@@ -36,7 +36,7 @@ Start Chromium Browser
 
 
 Check Tester
-  [Tags]  tester
+  [Tags]  health
   Log To Console  ${user}
   Log To Console  ${test_user0}  
   Should Be Equal  ${test_user0.username}  tester0
@@ -48,7 +48,7 @@ Check Tester
 
 
 Register Button Works
-  [Tags]  reg
+  [Tags]  shui
   New Page  ${url}
   #  ${reg_button}=    Get Elements  text="Register"
   Click  text="Register"
@@ -56,7 +56,7 @@ Register Button Works
 
 
 Register User
-  [Tags]  reg
+  [Tags]  shui
   New Page  ${url}
   Click  text="Register"
   Get Title  ==  Register - Demo App
@@ -70,7 +70,7 @@ Register User
 
 
 User Can Not Be Registered With Existing Username
-  [Tags]  reg
+  [Tags]  shui
   New Page  ${url}
   Click  text="Register"
   Get Title  ==  Register - Demo App
@@ -86,7 +86,7 @@ User Can Not Be Registered With Existing Username
 
 
 User Can Login With Correct Password
-  [Tags]  reg
+  [Tags]  shui
   New Page  ${url}
   Click  text="Log In"
   Get Title  ==  Log In - Demo App
@@ -98,7 +98,7 @@ User Can Login With Correct Password
   
 
 User Can Login After Registration With Correct Password 
-  [Tags]  reg
+  [Tags]  shui
   New Page  ${url}
   #  ${reg_button}=    Get Elements  text="Register"
   Click  text="Register"
@@ -117,7 +117,7 @@ User Can Login After Registration With Correct Password
 
 
 User Can Not Login With Incorrect Password
-  [Tags]  reg
+  [Tags]  shui
   New Page  ${url}
   Click  text="Log In"
   Get Title  ==  Log In - Demo App
@@ -128,7 +128,7 @@ User Can Not Login With Incorrect Password
 
 
 User Information Is Correct
-  [Tags]  reg
+  [Tags]  shui
   New Page  ${url}
   Click  text="Log In"
   Get Title  ==  Log In - Demo App
