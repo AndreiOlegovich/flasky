@@ -7,7 +7,7 @@ from dev.flasky.flasky import fetch_token, get_user
 target_ip = "10.6.0.13"
 username = "tester0"
 password = "secret0"
-token = fetch_token()
+token = fetch_token("tester0", "secret0")
 
 
 def test_connection():
