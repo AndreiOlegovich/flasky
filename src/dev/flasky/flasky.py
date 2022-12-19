@@ -12,7 +12,10 @@ def fetch_token(username, password):
     res = requests.get(url, auth=(username, password))
     print(res.text)
     print(type(res))
-    token = (res.json()["token"])
+    try:
+        token = (res.json()["token"])
+    except KeyError as e:
+        token = None
     print(token)
     return token
 
@@ -64,8 +67,8 @@ def update_user(username, password):
 
 if __name__ == '__main__':
     # fetch_token("tester0", "secret0")
-    get_users()
-    # get_user("tester0", "secret0")
+    # get_users()
+    get_user("tester0", "secret0")
     # get_user("tester0", "")
     # get_user("unknown", "secret0")
     # update_user("tester1", "secret1")
