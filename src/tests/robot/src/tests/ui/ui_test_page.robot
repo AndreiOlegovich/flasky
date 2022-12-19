@@ -40,7 +40,7 @@ Check Tester
   Log To Console  ${user}
   Log To Console  ${test_user0}  
   Should Be Equal  ${test_user0.username}  tester0
-  Should Be Equal  ${test_user0.password}  secret
+  Should Be Equal  ${test_user0.password}  secret0
   Should Be Equal  ${test_user0.firstname}  Dmitry
   Should Be Equal  ${test_user0.lastname}  Mendeleev
   Should Be Equal  ${test_user0.phone}  012345
