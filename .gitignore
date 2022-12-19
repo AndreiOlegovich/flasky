@@ -1,0 +1,17 @@
+src/dev/flasky/__pycache__
+src/tests/pytest/src/tests/venv
+src/tests/pytest/src/tests/.pytest_cache
+src/tests/pytest/src/tests/app/__pycache__
+src/tests/robot/src/tests/venv
+src/tests/pytest/src/tests/flask_service/__pycache__
+src/tests/robot/src/tests/ui/log.html
+src/tests/robot/src/tests/ui/output.xml
+src/tests/robot/src/tests/ui/playwright-log.txt
+src/tests/robot/src/tests/ui/report.html
+src/tests/robot/src/tests/ui/browser
+.gitignore.swp
+.git
+.idea
+.pytest_cachesrc
+src/dev/__pycache__/
+
