@@ -1,3 +1,18 @@
+# How to run these test
+
+1. run 
+
+```
+make test
+```
+
+Wait for container intro and run
+
+```
+make test
+```
+
+
 # setup env
 
 docker-compose build
