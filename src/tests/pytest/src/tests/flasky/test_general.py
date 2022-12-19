@@ -2,7 +2,7 @@ import pytest
 import requests
 import json
 
-from dev.flasky.flasky import fetch_token, get_user
+from dev.flasky.flasky import fetch_token, get_user, get_users, create_user, update_user
 
 target_ip = "10.6.0.13"
 username = "tester0"
@@ -25,16 +25,15 @@ def test_get_token():
     assert res == expected_result
 
 
-def test_get_users():
-    url = f"http://{target_ip}:8080/api/users"
-    headers = {
-        'Content-Type': 'application/json',
-        'Token': token
-    }
-    res = requests.get(url, headers=headers)
-    print(res.text)
-    res = res.status_code
-    expected_result = 200
+@pytest.mark.parametrize(
+    "args, expected_result",
+    [
+        (("tester0", "secret0"), 200),
+        (("tester0", ""), 401),
+        (("unknown", "secret0"), 401),
+    ])
+def test_get_users(args, expected_result):
+    res = get_users(*args)
     assert res == expected_result
 
 
@@ -43,9 +42,22 @@ def test_get_users():
     [
         (("tester0", "secret0"), 200),
         (("tester0", ""), 401),
-        (("unknown", "secret0"), 412),
+        (("unknown", "secret0"), 401),
     ])
 def test_get_user(args, expected_result):
     res = get_user(*args)
     assert res == expected_result
 
+
+@pytest.mark.skip(reason="not sure if function is ready")
+def test_create_user():
+    res = create_user()
+    expected_result = 200
+    assert res == expected_result
+
+
+@pytest.mark.skip(reason="not sure if function is ready")
+def test_update_user():
+    res = update_user()
+    expected_result = 200
+    assert res == expected_result
