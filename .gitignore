@@ -14,4 +14,9 @@ src/tests/robot/src/tests/ui/browser
 .idea
 .pytest_cachesrc
 src/dev/__pycache__/
+src/log.html
+src/output.xml
+src/playwright-log.txt
+src/report.html
+src/tests/pytest/src/tests/flasky/__pycache__/
 
