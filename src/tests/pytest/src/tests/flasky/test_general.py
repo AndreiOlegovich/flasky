@@ -11,7 +11,7 @@ token = fetch_token("tester0", "secret0")
 
 
 def test_connection():
-    res = requests.get(f"http://{target_ip}:8080/api/healthcheck")
+    res = requests.get(f"http://{target_ip}:8080/healthy")
     res = res.status_code
     expected_result = 200
     assert res == expected_result
@@ -29,7 +29,7 @@ def test_get_users():
     url = f"http://{target_ip}:8080/api/users"
     headers = {
         'Content-Type': 'application/json',
-        'Token': ""
+        'Token': token
     }
     res = requests.get(url, headers=headers)
     print(res.text)
