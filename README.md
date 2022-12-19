@@ -6,7 +6,7 @@
 make test
 ```
 
-Wait for container intro and run
+2. Wait for container intro and run
 
 ```
 make test
