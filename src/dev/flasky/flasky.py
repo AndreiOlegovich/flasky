@@ -18,7 +18,7 @@ def fetch_token(username, password):
 
 
 def get_users():
-    token = fetch_token("testuser0", "secret0")
+    token = fetch_token("tester0", "secret0")
     url = f"http://{target_ip}:8080/api/users"
     headers = {
         'Content-Type': 'application/json',
@@ -62,12 +62,11 @@ def update_user(username, password):
     return status
 
 
-
 if __name__ == '__main__':
-    fetch_token("tester0", "secret0")
+    # fetch_token("tester0", "secret0")
     get_users()
-    get_user("tester0", "secret0")
-    get_user("tester0", "")
-    get_user("unknown", "secret0")
-    update_user("tester1", "secret1")
-    get_user("tester1", "secret1")
+    # get_user("tester0", "secret0")
+    # get_user("tester0", "")
+    # get_user("unknown", "secret0")
+    # update_user("tester1", "secret1")
+    # get_user("tester1", "secret1")
