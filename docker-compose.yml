@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   pytest_robot_ubuntu:
-    container_name: sh_qa_pytest_robot_ubuntu
-    image: sh_qa_pytest_robot_ubuntu
+    container_name: flasky_pytest_robot_ubuntu
+    image: flasky_pytest_robot_ubuntu
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.ubuntu.pytest.robot
