@@ -55,15 +55,31 @@ python -m pytest tests/pytest/src/tests/flasky/
 
 # results 
 
-Original requiremenst are outdated.
+1. Original requiremenst are outdated.
 For compatibility with Python 3.10
 more recent versions are required
 
-container with Flask is based on alpine with sh, so
-shebang #!/bin/bash is incorrect and should be replaced
-with #!/bin/sh or bash should be installed
+2. Container with Flask is based on alpine with sh, so
+shebang in run.sh
 
-CMD in Dockerfile looks useless.
+```
+#!/bin/bash
+```
+ is incorrect and should be replaced with 
+```
+#!/bin/sh
+```
+ or bash should be installed
+
+3. CMD in Dockerfile looks useless.
 Used command in docker-compose.yml instead.
 
+4. Bug
+
 api/users url is replying without proper authentication
+
+5. Possible Bug (WIP)
+
+Creating users with POST to api/users 
+and updating with PUT api/users/username are not working 
+(probably error somewhere in testing code)
