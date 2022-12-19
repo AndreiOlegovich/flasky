@@ -33,7 +33,7 @@ services:
     volumes:
       - ./Flasky-master:/app
     tty: true
-    command: tail -F /dev/null
+    command: /app/run.sh
 
 
 networks:
