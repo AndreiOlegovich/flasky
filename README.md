@@ -1,4 +1,4 @@
-# How to run these test
+# How to run these tests
 
 1. run 
 
