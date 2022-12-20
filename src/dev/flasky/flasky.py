@@ -95,7 +95,7 @@ def update_user(username: str, password: str, **kwargs) -> int:
     payload = {
         "firstname": "Dmitry Ivanovich"
     }
-    res = requests.put(url, headers=headers, data=payload)
+    res = requests.put(url, headers=headers, json=payload)
     print(res.text)
     status = res.status_code
     print(status)
