@@ -51,7 +51,7 @@ def get_user(username, password):
     return status
 
 
-def update_user(username, password):
+def update_user(username: str, password: str) -> int:
     token = fetch_token(username, password)
     url = f"http://{target_ip}:8080/api/users/{username}"
     headers = {
@@ -70,21 +70,14 @@ def update_user(username, password):
     return status
 
 
-def create_user():
+def create_user(user: dict) -> int:
     token = fetch_token("tester0", "secret0")
     url = f"http://{target_ip}:8080/api/users"
     headers = {
         'Content-Type': 'application/json',
         'Token': token
     }
-    payload = {
-        "username": "Iren",
-        "password": "IrenSecret",
-        "firstname": "Iren",
-        "lastname": "Curie",
-        "phone": "22222"
-    }
-    res = requests.post(url, headers=headers, data=payload)
+    res = requests.post(url, headers=headers, json=user)
     print(res.text)
     status = res.status_code
     print(status)
@@ -92,7 +85,7 @@ def create_user():
     return status
 
 
-def update_user(username, password, **kwargs):
+def update_user(username: str, password: str, **kwargs) ->:
     token = fetch_token(username, password)
     url = f"http://{target_ip}:8080/api/users/{username}"
     headers = {
@@ -120,5 +113,4 @@ if __name__ == '__main__':
     # get_user("unknown", "secret0")
     # update_user("tester1", "secret1")
     # get_user("tester1", "secret1")
-    create_user()
     # update_user("tester0", "secret0")
