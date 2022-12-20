@@ -24,7 +24,7 @@ def test_get_token():
     expected_result = 200
     assert res == expected_result
 
-@pytest.mark.skip(reason="known failure")
+
 @pytest.mark.parametrize(
     "args, expected_result",
     [
@@ -51,14 +51,14 @@ def test_get_user(args, expected_result):
 
 
 user1 = {
-        "username": "icurie",
+        "username": "icurie1",
         "password": "IrenSecret",
         "firstname": "Iren",
         "lastname": "Curie",
         "phone": "22222"
         }
 user2 = {
-        "username": "rfeynman",
+        "username": "rfeynman1",
         "password": "decay",
         "lastname": "Feynman",
         "phone": "000"
