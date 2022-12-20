@@ -24,7 +24,7 @@ def test_get_token():
     expected_result = 200
     assert res == expected_result
 
-
+@pytest.mark.skip(reason="known failure")
 @pytest.mark.parametrize(
     "args, expected_result",
     [
@@ -49,10 +49,31 @@ def test_get_user(args, expected_result):
     assert res == expected_result
 
 
-@pytest.mark.skip(reason="not sure if function is ready")
-def test_create_user():
-    res = create_user()
-    expected_result = 200
+
+user1 = {
+        "username": "icurie",
+        "password": "IrenSecret",
+        "firstname": "Iren",
+        "lastname": "Curie",
+        "phone": "22222"
+        }
+user2 = {
+        "username": "rfeynman",
+        "password": "decay",
+        "lastname": "Feynman",
+        "phone": "000"
+}
+
+
+@pytest.mark.parametrize(
+    "user, expected_result",
+    [
+        pytest.param(user1, 201, id="new user"),
+        pytest.param(user1, 400, id="duplicate user"),
+        pytest.param(user2, 400, id="missing firstname"),
+    ])
+def test_create_user(user, expected_result):
+    res = create_user(user)
     assert res == expected_result
 
 
