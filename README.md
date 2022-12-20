@@ -77,9 +77,3 @@ Used command in docker-compose.yml instead.
 4. Bug
 
 api/users url is replying without proper authentication
-
-5. Possible Bug (WIP)
-
-Creating users with POST to api/users 
-and updating with PUT api/users/username are not working 
-(probably error somewhere in testing code)
