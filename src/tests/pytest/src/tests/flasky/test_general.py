@@ -77,8 +77,7 @@ def test_create_user(user, expected_result):
     assert res == expected_result
 
 
-@pytest.mark.skip(reason="not sure if function is ready")
 def test_update_user():
-    res = update_user()
-    expected_result = 200
+    res = update_user("tester0", "secret0")
+    expected_result = 201
     assert res == expected_result
