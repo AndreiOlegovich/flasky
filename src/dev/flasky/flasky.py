@@ -85,7 +85,7 @@ def create_user(user: dict) -> int:
     return status
 
 
-def update_user(username: str, password: str, **kwargs) ->:
+def update_user(username: str, password: str, **kwargs) -> int:
     token = fetch_token(username, password)
     url = f"http://{target_ip}:8080/api/users/{username}"
     headers = {
@@ -104,7 +104,7 @@ def update_user(username: str, password: str, **kwargs) ->:
 
 
 if __name__ == '__main__':
-    # fetch_token("tester0", "secret0")
+    fetch_token("tester0", "secret0")
     # get_users("tester0", "secret0")
     # get_users("tester0", "")
     # get_users("unknown", "secret0")
