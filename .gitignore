@@ -19,4 +19,5 @@ src/output.xml
 src/playwright-log.txt
 src/report.html
 src/tests/pytest/src/tests/flasky/__pycache__/
+Flasky-master/instance/demo_app.sqlite
 
