@@ -51,15 +51,17 @@ def test_get_user(args, expected_result):
 
 
 user1 = {
-        "username": "icurie1",
+        "username": "icurie2",
         "password": "IrenSecret",
         "firstname": "Iren",
         "lastname": "Curie",
         "phone": "22222"
         }
+
 user2 = {
-        "username": "rfeynman1",
+        "username": "rfeynman2",
         "password": "decay",
+        # "firstname": "Richard",
         "lastname": "Feynman",
         "phone": "000"
 }
@@ -77,7 +79,13 @@ def test_create_user(user, expected_result):
     assert res == expected_result
 
 
-def test_update_user():
-    res = update_user("tester0", "secret0")
-    expected_result = 201
+@pytest.mark.parametrize(
+    "args, kwargs, expected_result",
+    [
+        pytest.param(["tester0", "secret0"], {"firstname":"Max", "lastname":"Planck", "phone":4444}, 201, id="normal update"),
+        pytest.param(["tester0", "secret0"], {"username":"tester00", "lastname":"Landau", "phone":5555}, 403, id="forbidden field username"),
+        pytest.param(["tester0", "secret0"], {"password":"newpwd", "lastname":"Abrikosov", "phone":6666}, 403, id="forbidden field password"),
+    ])
+def test_update_user(args, kwargs, expected_result):
+    res = update_user(*args, **kwargs)
     assert res == expected_result
