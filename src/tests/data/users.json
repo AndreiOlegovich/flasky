@@ -1,0 +1,17 @@
+{
+    "users": [{
+            "username": "tester0",
+            "password": "secret0",
+            "firstname": "Dmitry",
+            "lastname": "Mendeleev",
+            "phone": 12345
+        },
+        {
+            "username": "tester1",
+            "password": "secret1",
+            "firstname": "Nikolai",
+            "lastname": "Basov",
+            "phone": 12346
+        }
+    ]
+}
