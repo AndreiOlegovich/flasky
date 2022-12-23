@@ -6,4 +6,7 @@ test:
 PHONY: pytest
 pytest:
 	-python -m pytest tests/pytest/src/tests/flasky/
-	
+
+PHONY: robot
+robot:
+	-robot tests/robot/src/tests/ui/
