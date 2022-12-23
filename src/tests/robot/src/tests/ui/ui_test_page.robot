@@ -6,6 +6,9 @@ Library  Browser
         ...  auto_closing_level=TEST
         ...  retry_assertions_for=0:00:03
 Library  Collections
+Library  OperatingSystem
+
+Suite Setup  Prepare Variables
 
 Force Tags  ui
 
@@ -13,10 +16,8 @@ Force Tags  ui
 *** Variables ***
 
 ${url}  http://10.6.0.13:8080
-&{test_user0}=  username=tester0  password=secret0  firstname=Dmitry  lastname=Mendeleev  phone=012345
-&{test_user1}=  username=tester1  password=secret1  firstname=Nikolai  lastname=Basov  phone=012346
+${user}  User
 
-${user}=  User1
 
 
 *** Keywords ***
@@ -31,9 +32,19 @@ Start Chromium Browser
   New Browser  browser=chromium  headless=True
   New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
 
+Prepare Variables
+  ${path}=  Normalize path  ${CURDIR}/../../../../data/users.json
+  ${json}=  Get File  ${path}
+  ${object}=  Evaluate  json.loads('''${json}''')  json
+  &{test_user0}=  Convert To Dictionary  ${object["users"][0]}
+  Set Suite Variable  ${test_user0}
+  ${test_user0_phone_str}=  Convert To String  ${test_user0.phone}
+  Set Suite Variable  ${test_user0_phone_str}
+  &{test_user1}=  Convert To Dictionary  ${object["users"][1]}
+  Set Suite Variable  ${test_user1}
+
 
 *** Test Cases ***
-
 
 Check Tester
   [Tags]  health
@@ -43,14 +54,12 @@ Check Tester
   Should Be Equal  ${test_user0.password}  secret0
   Should Be Equal  ${test_user0.firstname}  Dmitry
   Should Be Equal  ${test_user0.lastname}  Mendeleev
-  Should Be Equal  ${test_user0.phone}  012345
+  Should Be Equal As Integers  ${test_user0.phone}  12345
   
-
 
 Register Button Works
   [Tags]  shui
   New Page  ${url}
-  #  ${reg_button}=    Get Elements  text="Register"
   Click  text="Register"
   Get Title  ==  Register - Demo App
 
@@ -83,8 +92,6 @@ User Can Not Be Registered With Existing Username
   Get Title  !=  Log In - Demo App
 
 
-
-
 User Can Login With Correct Password
   [Tags]  shui
   New Page  ${url}
@@ -100,7 +107,6 @@ User Can Login With Correct Password
 User Can Login After Registration With Correct Password 
   [Tags]  shui
   New Page  ${url}
-  #  ${reg_button}=    Get Elements  text="Register"
   Click  text="Register"
   Get Title  ==  Register - Demo App
   Fill Text  //input[@id="username"]    ${test_user1.username}
@@ -143,6 +149,6 @@ User Information Is Correct
   Get Text    ${firstname}    ==    ${test_user0.firstname}
   ${lastname}=    Get Element    //td[@id="lastname"]
   Get Text    ${lastname}    ==    ${test_user0.lastname}
-  ${phone}=    Get Element    //td[@id="phone"]
-  Get Text    ${phone}    ==    ${test_user0.phone}
+  ${phone}=    Get Element    //td[@id="phone"]  
+  Get Text    ${phone}    ==    ${test_user0_phone_str}
 
