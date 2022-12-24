@@ -6,7 +6,7 @@ test:
 
 PHONY: rmdb
 rmdb:
-	docker stop flasky_flasky_1
+	-docker stop flasky_flasky_1
 	sudo rm Flasky-master/instance/demo_app.sqlite
 	docker-compose up -d
 
