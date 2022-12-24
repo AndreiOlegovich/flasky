@@ -1,5 +1,6 @@
 *** Settings ***
-Documentation  Example that opens single page
+
+Documentation  Flasky App UI Test
 
 Library  Browser
         ...  enable_playwright_debug=${True}
@@ -15,9 +16,8 @@ Force Tags  ui
 
 *** Variables ***
 
-${url}  http://10.6.0.13:8080
 ${user}  User
-
+# ${url}=  http://10.6.0.13:8080
 
 
 *** Keywords ***
@@ -36,6 +36,8 @@ Prepare Variables
   ${path}=  Normalize path  ${CURDIR}/../../../../data/users.json
   ${json}=  Get File  ${path}
   ${object}=  Evaluate  json.loads('''${json}''')  json
+  ${url}=  Convert To String  ${object["url"]}
+  Set Suite Variable  ${url}
   &{test_user0}=  Convert To Dictionary  ${object["users"][0]}
   Set Suite Variable  ${test_user0}
   ${test_user0_phone_str}=  Convert To String  ${test_user0.phone}

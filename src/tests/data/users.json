@@ -1,4 +1,5 @@
 {
+    "url": "http://10.6.0.13:8080",
     "users": [{
             "username": "tester0",
             "password": "secret0",
@@ -12,6 +13,20 @@
             "firstname": "Nikolai",
             "lastname": "Basov",
             "phone": 12346
+        },
+        {
+            "username": "icurie2",
+            "password": "IrenSecret",
+            "firstname": "Iren",
+            "lastname": "Curie",
+            "phone": "22222"
+        },
+        {
+            "username": "rfeynman2",
+            "password": "decay",
+            "firstname": "Richard",
+            "lastname": "Feynman",
+            "phone": "000"
         }
-    ]
+    ]    
 }
