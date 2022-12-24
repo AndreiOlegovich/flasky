@@ -16,15 +16,14 @@
         },
         {
             "username": "icurie2",
-            "password": "IrenSecret",
+            "password": "normalUser",
             "firstname": "Iren",
             "lastname": "Curie",
             "phone": "22222"
         },
         {
             "username": "rfeynman2",
-            "password": "decay",
-            "firstname": "Richard",
+            "password": "noFirstName",
             "lastname": "Feynman",
             "phone": "000"
         }
