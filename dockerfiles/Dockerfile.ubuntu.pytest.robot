@@ -7,7 +7,7 @@ CMD ["echo", "HH: image is creating"]
 
 ENV TEST_DIR=/opt 
 
-ENV PYTHONPATH=TEST_DIR
+ENV PYTHONPATH=$TEST_DIR
 ENV TZ=Europe/Helsinki
 ENV DEBIAN_FRONTEND=noninteractive
 
