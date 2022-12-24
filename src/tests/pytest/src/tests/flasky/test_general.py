@@ -1,25 +1,39 @@
 import pytest
 import requests
+import json
+import pathlib
 
+from pathlib import Path
 from dev.flasky.flasky import (
     fetch_token, get_user, get_users, create_user, update_user)
 
-target_ip = "10.6.0.13"
-username = "tester0"
-password = "secret0"
-token = fetch_token("tester0", "secret0")
+
+dir_path = pathlib.Path.cwd()
+path = Path(dir_path, "tests", "test_data", "users.json")
+
+with open(path, "r") as f:
+    data = f.read()
+    testdata = json.loads(data)
+
+base_url = testdata["url"]
+user0 = testdata["users"][0]
+# user1 is used in robot but not here
+user2 = testdata["users"][2]
+user3 = testdata["users"][3]
+
+token = fetch_token(user0["username"], user0["password"])
 
 
 def test_connection():
-    res = requests.get(f"http://{target_ip}:8080/healthy")
+    res = requests.get(f"{base_url}/healthy")
     res = res.status_code
     expected_result = 200
     assert res == expected_result
 
 
 def test_get_token():
-    url = f"http://{target_ip}:8080/api/auth/token"
-    res = requests.get(url, auth=(username, password))
+    url = f"{base_url}/api/auth/token"
+    res = requests.get(url, auth=(user0["username"], user0["password"]))
     res = res.status_code
     expected_result = 200
     assert res == expected_result
@@ -28,9 +42,9 @@ def test_get_token():
 @pytest.mark.parametrize(
     "args, expected_result",
     [
-        (("tester0", "secret0"), 200),
-        (("tester0", ""), 401),
-        (("unknown", "secret0"), 401),
+        ((user0["username"], user0["password"]), 200),
+        ((user0["username"], ""), 401),
+        (("unknown", user0["password"]), 401),
     ])
 def test_get_users(args, expected_result):
     res = get_users(*args)
@@ -40,8 +54,8 @@ def test_get_users(args, expected_result):
 @pytest.mark.parametrize(
     "args, expected_result",
     [
-        (("tester0", "secret0"), 200),
-        (("tester0", ""), 401),
+        ((user0["username"], "secret0"), 200),
+        ((user0["username"], ""), 401),
         (("unknown", "secret0"), 401),
     ])
 def test_get_user(args, expected_result):
@@ -49,29 +63,12 @@ def test_get_user(args, expected_result):
     assert res == expected_result
 
 
-user1 = {
-        "username": "icurie2",
-        "password": "IrenSecret",
-        "firstname": "Iren",
-        "lastname": "Curie",
-        "phone": "22222"
-}
-
-user2 = {
-        "username": "rfeynman2",
-        "password": "decay",
-        # "firstname": "Richard",
-        "lastname": "Feynman",
-        "phone": "000"
-}
-
-
 @pytest.mark.parametrize(
     "user, expected_result",
     [
-        pytest.param(user1, 201, id="new user"),
-        pytest.param(user1, 400, id="duplicate user"),
-        pytest.param(user2, 400, id="missing firstname"),
+        pytest.param(user2, 201, id="new user"),
+        pytest.param(user2, 400, id="duplicate user"),
+        pytest.param(user3, 400, id="missing firstname"),
     ])
 def test_create_user(user, expected_result):
     res = create_user(user)
@@ -82,17 +79,17 @@ def test_create_user(user, expected_result):
     "args, kwargs, expected_result",
     [
         pytest.param(
-            ["tester0", "secret0"],
+            [user0["username"], "secret0"],
             {"firstname": "Max", "lastname": "Planck", "phone": 4444},
             201,
             id="normal update"),
         pytest.param(
-            ["tester0", "secret0"],
+            [user0["username"], "secret0"],
             {"username": "tester00", "lastname": "Landau", "phone": 5555},
             403,
             id="forbidden field username"),
         pytest.param(
-            ["tester0", "secret0"],
+            [user0["username"], "secret0"],
             {"password": "newpwd", "lastname": "Abrikosov", "phone": 6666},
             403,
             id="forbidden field password"),

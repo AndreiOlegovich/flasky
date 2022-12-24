@@ -33,7 +33,7 @@ Start Chromium Browser
   New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
 
 Prepare Variables
-  ${path}=  Normalize path  ${CURDIR}/../../../../data/users.json
+  ${path}=  Normalize path  ${CURDIR}/../../../../test_data/users.json
   ${json}=  Get File  ${path}
   ${object}=  Evaluate  json.loads('''${json}''')  json
   ${url}=  Convert To String  ${object["url"]}
