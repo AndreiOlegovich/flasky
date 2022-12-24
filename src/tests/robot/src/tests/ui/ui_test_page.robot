@@ -60,14 +60,14 @@ Check Tester
   
 
 Register Button Works
-  [Tags]  shui
+  [Tags]  flasky
   New Page  ${url}
   Click  text="Register"
   Get Title  ==  Register - Demo App
 
 
 Register User
-  [Tags]  shui
+  [Tags]  flasky
   New Page  ${url}
   Click  text="Register"
   Get Title  ==  Register - Demo App
@@ -81,7 +81,7 @@ Register User
 
 
 User Can Not Be Registered With Existing Username
-  [Tags]  shui
+  [Tags]  flasky
   New Page  ${url}
   Click  text="Register"
   Get Title  ==  Register - Demo App
@@ -95,7 +95,7 @@ User Can Not Be Registered With Existing Username
 
 
 User Can Login With Correct Password
-  [Tags]  shui
+  [Tags]  flasky
   New Page  ${url}
   Click  text="Log In"
   Get Title  ==  Log In - Demo App
@@ -107,7 +107,7 @@ User Can Login With Correct Password
   
 
 User Can Login After Registration With Correct Password 
-  [Tags]  shui
+  [Tags]  flasky
   New Page  ${url}
   Click  text="Register"
   Get Title  ==  Register - Demo App
@@ -125,7 +125,7 @@ User Can Login After Registration With Correct Password
 
 
 User Can Not Login With Incorrect Password
-  [Tags]  shui
+  [Tags]  flasky
   New Page  ${url}
   Click  text="Log In"
   Get Title  ==  Log In - Demo App
@@ -136,7 +136,7 @@ User Can Not Login With Incorrect Password
 
 
 User Information Is Correct
-  [Tags]  shui
+  [Tags]  flasky
   New Page  ${url}
   Click  text="Log In"
   Get Title  ==  Log In - Demo App
