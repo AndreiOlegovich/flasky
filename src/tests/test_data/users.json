@@ -26,6 +26,18 @@
             "password": "noFirstName",
             "lastname": "Feynman",
             "phone": "000"
+        },
+        {
+            "username": "rfeynman3",
+            "password": "noLastName",
+            "firstname": "Richard",
+            "phone": "000"
+        },
+        {
+            "username": "rfeynman4",
+            "password": "noPhone",
+            "lastname": "Feynman",
+            "firstname": "Richard"
         }
     ]    
 }

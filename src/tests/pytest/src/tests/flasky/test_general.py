@@ -20,6 +20,7 @@ user0 = testdata["users"][0]
 # user1 is used in robot but not here
 user2 = testdata["users"][2]
 user3 = testdata["users"][3]
+user4 = testdata["users"][4]
 
 token = fetch_token(user0["username"], user0["password"])
 
@@ -69,6 +70,7 @@ def test_get_user(args, expected_result):
         pytest.param(user2, 201, id="new user"),
         pytest.param(user2, 400, id="duplicate user"),
         pytest.param(user3, 400, id="missing firstname"),
+        pytest.param(user4, 400, id="missing lastname"),
     ])
 def test_create_user(user, expected_result):
     res = create_user(user)
