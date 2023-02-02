@@ -42,6 +42,24 @@ Prepare Variables
   &{test_user1}=  Convert To Dictionary  ${object["users"][1]}
   Set Suite Variable  ${test_user1}
 
+Fill Form
+  [Arguments]
+  ...  ${text}
+  ...  ${username}
+  ...  ${password}
+  ...  ${firstname}
+  ...  ${lastname}
+  ...  ${phone}
+  # ...  ${expected_title}
+  New Page  ${url}
+  Click  text=${text}
+  Fill Text  //input[@id="username"]    ${username}
+  Fill Text  //input[@id="password"]    ${password}
+  Fill Text  //input[@id="firstname"]    ${firstname}
+  Fill Text  //input[@id="lastname"]    ${lastname}
+  Fill Text  //input[@id="phone"]    ${phone}
+  Click    //input[@type="submit"]
+  
 
 *** Test Cases ***
 
@@ -64,16 +82,21 @@ Register Button Works
 
 
 Register User
-  [Tags]  flasky
-  New Page  ${url}
-  Click  text="Register"
-  Get Title  ==  Register - Demo App
-  Fill Text  //input[@id="username"]    ${test_user0.username}
-  Fill Text  //input[@id="password"]    ${test_user0.password}
-  Fill Text  //input[@id="firstname"]    ${test_user0.firstname}
-  Fill Text  //input[@id="lastname"]    ${test_user0.lastname}
-  Fill Text  //input[@id="phone"]    ${test_user0.phone}
-  Click    //input[@type="submit"]
+  [Tags]  flasky 
+  [Template]  Fill Form
+  text="Register"  username=${test_user0.username}  password=${test_user0.password}  
+  ...  firstname=${test_user0.firstname}  lastname=${test_user0.lastname}  
+  ...  phone=${test_user0.phone}  
+  # ...  expected_title=Log In - Demo App
+  # New Page  ${url}
+  # Click  text="Register"
+  # Get Title  ==  Register - Demo App
+  # Fill Text  //input[@id="username"]    ${test_user0.username}
+  # Fill Text  //input[@id="password"]    ${test_user0.password}
+  # Fill Text  //input[@id="firstname"]    ${test_user0.firstname}
+  # Fill Text  //input[@id="lastname"]    ${test_user0.lastname}
+  # Fill Text  //input[@id="phone"]    ${test_user0.phone}
+  # Click    //input[@type="submit"]
   Get Title  ==  Log In - Demo App
 
 
@@ -150,4 +173,3 @@ User Information Is Correct
   Get Text    ${lastname}    ==    ${test_user0.lastname}
   ${phone}=    Get Element    //td[@id="phone"]  
   Get Text    ${phone}    ==    ${test_user0_phone_str}
-
