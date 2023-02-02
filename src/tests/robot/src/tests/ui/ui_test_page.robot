@@ -1,6 +1,7 @@
 *** Settings ***
 
 Documentation  Flasky App UI Test
+Resource  ui/ui.resource
 
 Library  Browser
         ...  enable_playwright_debug=${True}
@@ -27,10 +28,6 @@ Test Setup Tasks
 
 Test Teardown Tasks
   Close Browser
-
-Start Chromium Browser
-  New Browser  browser=chromium  headless=True
-  New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
 
 Prepare Variables
   ${path}=  Normalize path  ${CURDIR}/../../../../test_data/users.json
