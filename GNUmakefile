@@ -10,6 +10,10 @@ rmdb:
 	sudo rm Flasky-master/instance/demo_app.sqlite
 	docker-compose up -d
 
+PHONY: enter-container
+enter-container:
+	docker exec -it flasky_pytest_robot_ubuntu bash
+
 
 
 
