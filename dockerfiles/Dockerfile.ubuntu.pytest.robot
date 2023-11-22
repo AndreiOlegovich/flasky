@@ -1,14 +1,14 @@
 # getting base image ubuntu
 FROM ubuntu:22.04
 
-LABEL maintainer="andreyolegovich.ru"
+LABEL maintainer="www.urn.su"
 
 CMD ["echo", "HH: image is creating"]
 
 ENV TEST_DIR=/opt 
 ENV PYTHON_DIR=/user/local/bin/python
 ENV ROBOT_RESOURCES=/opt/tests/robot/src/resources
-    # ROBOT_LIBRARIES=/opt/robot/src/libraries \
+ENV ROBOT_LIBRARIES=/opt/robot/src/libraries
     # ROBOT_MODIFIERS=/opt/robot/src/modifiers \
     # ROBOT_INPUT=/opt/robot/input \
     # ROBOT_OUTPUT=/opt/robot/output
@@ -34,7 +34,7 @@ VOLUME $TEST_DIR
 RUN apt-get -y update \
   && apt-get install -y dialog \
   && apt-get install -y apt-utils \
-  && apt-get install -y tree vim \
+  && apt-get install -y tree vim ssh \
   && apt-get install -y curl gcc g++ make nmap net-tools netcat \
   && apt-get -y update \
   && apt-get -y upgrade
@@ -42,7 +42,6 @@ RUN apt-get -y update \
 
 # install python
 RUN apt-get install -y python3 python3-pip \
-  && apt-get install -y curl gcc g++ make \
   && cd /usr/local/bin \
   && ln -s /usr/bin/python3 python \
   && python -m pip install --upgrade pip
