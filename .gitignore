@@ -9,7 +9,11 @@ src/tests/robot/src/tests/ui/output.xml
 src/tests/robot/src/tests/ui/playwright-log.txt
 src/tests/robot/src/tests/ui/report.html
 src/tests/robot/src/tests/ui/browser
-.gitignore.swp
+src/tests/robot/src/log.html
+src/tests/robot/src/output.xml
+src/tests/robot/src/playwright-log.txt
+src/tests/robot/src/report.html
+src/tests/robot/src/report.html.gitignore.swp
 .git
 .idea
 .pytest_cachesrc
