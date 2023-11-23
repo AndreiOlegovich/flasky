@@ -31,8 +31,7 @@ Open Browser To Login Page
 
 
 Login Page Should Be Open
-    ${title}=  Get Title
-    Should Be Equal    ${title}    Log In - Demo App
+    Get Title  ==  Log In - Demo App
 
 
 Input Username
@@ -45,6 +44,21 @@ Input Password
     Fill Text    //input[@id="password"]    ${password}
 
 
+Input Firstname
+    [Arguments]    ${firstname}
+    Fill Text    //input[@id="firstname"]    ${firstname}
+
+
+Input Lastname
+    [Arguments]    ${lastname}
+    Fill Text    //input[@id="lastname"]    ${lastname}
+
+
+Input Phone
+    [Arguments]    ${phone}
+    Fill Text    //input[@id="phone"]    ${phone}
+
+
 Submit Credentials
     Click    //input[@type="submit"]
 
@@ -54,3 +68,28 @@ User Page Should Be Open
     ${title}=  Get Title
     Should Be Equal    ${url}    ${USER URL}
     Should Be Equal    ${title}  User Information - Demo App
+
+
+Open Browser To Register Page
+    New Browser  browser=${BROWSER}  headless=True
+    New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
+    New Page    ${Register URL}
+    Register Page Should Be Open
+
+
+Register Page Should Be Open
+    Get Title  ==  Register - Demo App
+    Get Url  ==  ${REGISTER URL}
+
+
+Register User
+    [Arguments]    ${user}
+    Open Browser To Register Page
+    Input Username  ${user.username}
+    Log  ${user.username}
+    Input Password  ${user.password}
+    Input Firstname  ${user.firstname}
+    Input Lastname  ${user.lastname}
+    Input Phone  ${user.phone}
+    Submit Credentials
+
