@@ -8,13 +8,13 @@ CMD ["echo", "HH: image is creating"]
 ENV TEST_DIR=/opt 
 ENV PYTHON_DIR=/user/local/bin/python
 ENV ROBOT_RESOURCES=/opt/tests/robot/src/resources
-ENV ROBOT_LIBRARIES=/opt/robot/src/libraries
+ENV ROBOT_LIBRARIES=/opt/tests/robot/src/libraries
     # ROBOT_MODIFIERS=/opt/robot/src/modifiers \
     # ROBOT_INPUT=/opt/robot/input \
     # ROBOT_OUTPUT=/opt/robot/output
 
 # ENV PYTHONPATH=$TEST_DIR:$PYTHON_DIR$ROBOT_LIBRARIES:$ROBOT_RESOURCES:$ROBOT_MODIFIERS
-ENV PYTHONPATH=$TEST_DIR:$PYTHON_DIR:$ROBOT_RESOURCES
+ENV PYTHONPATH=$TEST_DIR:$PYTHON_DIR:$ROBOT_RESOURCES:$ROBOT_LIBRARIES
 ENV TZ=Europe/Helsinki
 ENV DEBIAN_FRONTEND=noninteractive
 
