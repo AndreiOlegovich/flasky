@@ -18,22 +18,6 @@ ${ERROR URL}     http://${SERVER}/error
 
 *** Keywords ***
 
-Start Chromium Browser
-  New Browser  browser=chromium  headless=True
-  New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
-
-
-Open Browser To Login Page
-    New Browser  browser=${BROWSER}  headless=True
-    New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
-    New Page    ${LOGIN URL}
-    Login Page Should Be Open
-
-
-Login Page Should Be Open
-    Get Title  ==  Log In - Demo App
-
-
 Input Username
     [Arguments]    ${username}
     Fill Text    //input[@id="username"]    ${username}
@@ -59,15 +43,16 @@ Input Phone
     Fill Text    //input[@id="phone"]    ${phone}
 
 
-Submit Credentials
-    Click    //input[@type="submit"]
+Login Page Should Be Open
+    Get Title  ==  Log In - Demo App
+    Get Url  ==  ${LOGIN URL}
 
 
-User Page Should Be Open
-    ${url}=  Get Url
-    ${title}=  Get Title
-    Should Be Equal    ${url}    ${USER URL}
-    Should Be Equal    ${title}  User Information - Demo App
+Open Browser To Login Page
+    New Browser  browser=${BROWSER}  headless=True
+    New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
+    New Page    ${LOGIN URL}
+    Login Page Should Be Open
 
 
 Open Browser To Register Page
@@ -77,19 +62,26 @@ Open Browser To Register Page
     Register Page Should Be Open
 
 
+# In this keyword we use the shortest way
+# to validate title and url
 Register Page Should Be Open
     Get Title  ==  Register - Demo App
     Get Url  ==  ${REGISTER URL}
 
 
-Register User
-    [Arguments]    ${user}
-    Open Browser To Register Page
-    Input Username  ${user.username}
-    Log  ${user.username}
-    Input Password  ${user.password}
-    Input Firstname  ${user.firstname}
-    Input Lastname  ${user.lastname}
-    Input Phone  ${user.phone}
-    Submit Credentials
+Start Chromium Browser
+    New Browser  browser=chromium  headless=True
+    New Context  viewport={'width': 1920, 'height': 1080}  ignoreHTTPSErrors=True
 
+
+Submit Credentials
+    Click    //input[@type="submit"]
+
+
+# In this keyword we use step by step variable
+# assignment and validation
+User Page Should Be Open
+    ${url}=  Get Url
+    ${title}=  Get Title
+    Should Be Equal    ${url}    ${USER URL}
+    Should Be Equal    ${title}  User Information - Demo App
