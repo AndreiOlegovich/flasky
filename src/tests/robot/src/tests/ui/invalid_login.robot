@@ -47,6 +47,5 @@ Missing Password
 Missing Credentials
     [Tags]  flasky
     Open Browser To Login Page  
-    Input Username    ${unique_user.username}
     Submit Credentials
     Login Page Should Be Open
