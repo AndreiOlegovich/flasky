@@ -1,6 +1,9 @@
 *** Settings ***
 
-Documentation     A test suite with tests for valid login.
+Documentation     A test suite with tests for invalid login.
+...               User tries to login without some credential.
+...               It is verified that user stays on the Register
+...               Page and doesn't proceed to Login Page
 
 Resource    ui/ui.resource
 Resource    users/users.resource
@@ -31,7 +34,7 @@ Setup Suite
 *** Test Cases ***
 
 Without Username
-    [Tags]  flasky
+    [Tags]  flasky    proto
     ${spoiled_user}=  User Without Username
     Register User  user=${spoiled_user}
     Register Page Should Be Open
@@ -65,3 +68,11 @@ Without Phone Number
     Register Page Should Be Open
 
 
+Without Multiple Credentials
+    [Tags]  flasky  proto
+    ${spoiled_user}=  User Without Multiple Credentials  username  password
+    Register User  user=${spoiled_user}
+    Register Page Should Be Open
+    ${spoiled_user}=  User Without Multiple Credentials
+    Register User  user=${spoiled_user}
+    Register Page Should Be Open
