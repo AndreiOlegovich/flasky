@@ -21,7 +21,7 @@ Generate Unique User
 
 User Without Username
     &{user}=  Generate User
-    &{spoiled_user}=  Spoil User  ${user}  username  
+    &{spoiled_user}=  Spoil User  ${user}  username
     [Return]  &{spoiled_user}
 
 
@@ -48,6 +48,20 @@ User Without Phone Number
     &{spoiled_user}=  Spoil User  ${user}  phone
     [Return]  &{spoiled_user}
 
+
+User Without Multiple Credentials
+    [Arguments]  @{missing_creds}
+
+    ${list_len}=    Get Length    ${missing_creds}
+    IF  ${list_len} == 0
+        @{missing_creds}=  Select Credentials To Delete
+    END
+
+    &{user}=  Generate User
+    &{spoiled_user}=  Spoil User    ${user}    ${missing_creds}
+    [Return]  &{spoiled_user}
+
+
 Register User
     [Arguments]    ${user}
     Open Browser To Register Page
@@ -58,4 +72,3 @@ Register User
     Input Lastname  ${user.lastname}
     Input Phone  ${user.phone}
     Submit Credentials
-
