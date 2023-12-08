@@ -18,6 +18,11 @@ ${ERROR URL}     http://${SERVER}/error
 
 *** Keywords ***
 
+Error Page Should Be Open
+    Get Title  ==  Login Failure - Demo App
+    Get Url  ==  ${ERROR URL}
+
+
 Input Username
     [Arguments]    ${username}
     Fill Text    //input[@id="username"]    ${username}
