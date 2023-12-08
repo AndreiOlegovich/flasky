@@ -33,7 +33,7 @@ Test Teardown Tasks
 *** Test Cases ***
 
 Missing Username
-    [Documentation]    Empty string is used for username
+    [Documentation]    Username field is left empty
     [Tags]  flasky
     Open Browser To Login Page  
     Input Password    ${unique_user.password}
@@ -41,7 +41,7 @@ Missing Username
     Login Page Should Be Open
 
 Missing Password
-    [Documentation]    Empty string is used for password
+    [Documentation]    Password field is left empty
     [Tags]  flasky
     Open Browser To Login Page  
     Input Username    ${unique_user.username}
