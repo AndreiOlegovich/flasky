@@ -42,6 +42,7 @@ Providing ${username} and ${password} Title Should Be ${expected}
 
 Login With Credentials
     [Template]    Providing ${username} and ${password} Title Should Be ${expected}
+    ${unique_user.username}    ${unique_user.password}    User Information - Demo App
     WRONG                      WRONG                      Login Failure - Demo App
     ${unique_user.username}    WRONG                      Login Failure - Demo App
     WRONG                      ${unique_user.password}    Login Failure - Demo App
@@ -50,4 +51,3 @@ Login With Credentials
     ${EMPTY}                   ${unique_user.password}    Log In - Demo App
     WRONG                      ${EMPTY}                   Log In - Demo App
     ${EMPTY}                   WRONG                      Log In - Demo App
-
