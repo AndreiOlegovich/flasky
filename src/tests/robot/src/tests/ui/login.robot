@@ -1,6 +1,7 @@
 *** Settings ***
 
-Documentation  Flasky App Login DD Test
+Documentation  Flasky App Login Data-driven Test
+...            with [Template] TC Setting
 Resource  users/users.resource
 
 Suite Setup  Setup Suite
@@ -41,6 +42,9 @@ Providing ${username} and ${password} Title Should Be ${expected}
 *** Test Cases ***
 
 Login With Credentials
+    [Documentation]    A test case that covers both
+    ...                valid, invalid and missing
+    ...                credentials entry
     [Template]    Providing ${username} and ${password} Title Should Be ${expected}
     ${unique_user.username}    ${unique_user.password}    User Information - Demo App
     WRONG                      WRONG                      Login Failure - Demo App
