@@ -7,7 +7,7 @@ Resource    users/users.resource
 
 Suite Setup  Setup Suite
 
-Force Tags  ui
+Test Tags  ui  register
 
 
 *** Variables ***

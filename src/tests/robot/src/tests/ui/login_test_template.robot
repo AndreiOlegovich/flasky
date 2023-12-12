@@ -3,6 +3,11 @@
 Documentation  Flasky App Login Data-driven Test with
 ...            Arguments Embedded to Template Keyword Name
 ...            and Test Template Setting demo
+
+Metadata    Version         1.1
+Metadata    Maintainer      https://testsetup.ru 
+Metadata    Platform        Docker Ubuntu
+
 Resource  users/users.resource
 
 Suite Setup  Setup Suite

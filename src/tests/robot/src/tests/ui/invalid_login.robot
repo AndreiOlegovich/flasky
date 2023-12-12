@@ -8,7 +8,7 @@ Library  utils.py
 
 Suite Setup  Setup Suite
 
-Force Tags  ui
+Test Tags  ui  login
 
 
 *** Variables ***
