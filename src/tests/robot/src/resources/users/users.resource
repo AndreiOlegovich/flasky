@@ -9,6 +9,18 @@ Resource  ui/ui.resource
 
 *** Keywords ***
 
+Register User
+    [Arguments]    ${user}
+    Open Browser To Register Page
+    Input Username  ${user.username}
+    Log  ${user.username}
+    Input Password  ${user.password}
+    Input Firstname  ${user.firstname}
+    Input Lastname  ${user.lastname}
+    Input Phone  ${user.phone}
+    Submit Credentials
+
+
 Unique Username
     ${username}=  Catenate  Username  Str Uuid
     [Return]  ${username}
@@ -60,15 +72,3 @@ User Without Multiple Credentials
     &{user}=  Generate User
     &{spoiled_user}=  Spoil User    ${user}    ${missing_creds}
     [Return]  &{spoiled_user}
-
-
-Register User
-    [Arguments]    ${user}
-    Open Browser To Register Page
-    Input Username  ${user.username}
-    Log  ${user.username}
-    Input Password  ${user.password}
-    Input Firstname  ${user.firstname}
-    Input Lastname  ${user.lastname}
-    Input Phone  ${user.phone}
-    Submit Credentials
