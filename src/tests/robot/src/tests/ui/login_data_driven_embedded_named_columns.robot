@@ -7,7 +7,7 @@ Resource  users/users.resource
 
 Suite Setup  Setup Suite
 
-Force Tags    ui    login
+Test Tags    ui    login
 
 Test Template    Providing ${username} and ${password} Title Should Be ${expected}
 
